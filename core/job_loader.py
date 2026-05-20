@@ -6,6 +6,15 @@ from pydantic import BaseModel, Field
 
 from config.settings import JOBS_DIR
 
+# 旧命令别名 → jobs/*.yaml 文件名（不含扩展名）
+JOB_ALIASES: dict[str, str] = {
+    "dongqiudi": "dongqiudi_schedule",
+}
+
+
+def resolve_job_id(job_id: str) -> str:
+    return JOB_ALIASES.get(job_id, job_id)
+
 
 class StepConfig(BaseModel):
     plugin: str
@@ -23,6 +32,7 @@ class JobConfig(BaseModel):
 
 
 def load_job(job_id: str) -> JobConfig:
+    job_id = resolve_job_id(job_id)
     path = JOBS_DIR / f"{job_id}.yaml"
     if not path.is_file():
         raise FileNotFoundError(f"Job not found: {job_id} (expected {path})")

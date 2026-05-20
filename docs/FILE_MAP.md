@@ -1,26 +1,33 @@
-# 文件对照表（重构后）
+# 文件对照表
 
-根目录旧脚本已改为**薄入口**，逻辑在 `plugins/` / `core/` / `jobs/`。
+## 目标架构（当前仓库）
 
-| 你熟悉的文件 | 现在在哪 | 怎么运行 |
-|-------------|----------|----------|
-| `dongqiudi_crawler.py` | `plugins/ingest/dongqiudi.py` | `python run_job.py dongqiudi` |
-| `notifier.py` | `plugins/deliver/telegram.py` | 由 Job 的 deliver 步骤调用 |
-| `parser.py` | `plugins/transform/html_clean.py` | `web_monitor` 任务自动用 |
-| `scraper.py` | `plugins/ingest/playwright_web.py` | `python run_job.py web_monitor` |
-| `config.py` | `config/settings.py` | `from config import TELEGRAM_BOT_TOKEN` |
-| `fetch_matches.py` | 根目录入口 + `jobs/dongqiudi.yaml` | `python fetch_matches.py --telegram` |
-| `daily_job.py` | 根目录入口 | `python daily_job.py` |
-| `main.py` | 根目录入口 | `python main.py` |
-| `test_setup.py` | 根目录 + `scripts/test_setup.py` | `python test_setup.py` |
-| `scheduler.py` | 根目录 + `scripts/scheduler.py` | `python scheduler.py` |
+| 路径 | 职责 |
+|------|------|
+| `config/settings.py` | 全局配置 |
+| `core/pipeline.py` | Ingest → Transform → Deliver |
+| `core/triggers.py` | CLI、定时调度 |
+| `plugins/ingest/dongqiudi.py` | 懂球帝 API |
+| `plugins/ingest/playwright_web.py` | 浏览器抓取 |
+| `plugins/transform/html_to_text.py` | HTML → 文本 + 关键词 |
+| `plugins/transform/pandas_clean.py` | 预留 |
+| `plugins/deliver/telegram.py` | Telegram 发送 |
+| `plugins/deliver/whatsapp.py` | 预留 |
+| `jobs/*.yaml` | 业务编排 |
+| `scripts/run_job.py` | **主入口** |
 
-## 不会出现在 GitHub 上的（正常）
+## 命令
 
-| 文件/目录 | 原因 |
-|-----------|------|
-| `.env` | 含密钥，在 `.gitignore` |
-| `data/*.csv` `data/*.txt` | 运行输出，在 `.gitignore` |
-| `.venv/` | 本地虚拟环境 |
+```powershell
+python scripts/run_job.py dongqiudi_schedule
+python scripts/run_job.py web_monitor
+python scripts/scheduler.py
+```
 
-克隆仓库后请：`copy .env.example .env` 并填写配置。
+## Legacy（`legacy/`）
+
+旧习惯命令仍可用，内部转发到新入口，见 `legacy/README.md`。
+
+## 不入库
+
+`.env`、`data/*`（除 `.gitkeep`）

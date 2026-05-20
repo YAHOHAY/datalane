@@ -1,4 +1,4 @@
-id: dongqiudi
+id: dongqiudi_schedule
 name: 懂球帝重要赛事
 description: 抓取未来赛程，保存 CSV/TXT 并推送到 Telegram
 

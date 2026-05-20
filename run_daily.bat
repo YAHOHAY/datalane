@@ -5,4 +5,4 @@ if exist ".venv\Scripts\activate.bat" (
     call ".venv\Scripts\activate.bat"
 )
 
-python run_job.py dongqiudi
+python scripts\run_job.py dongqiudi_schedule

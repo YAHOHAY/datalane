@@ -1,16 +1,8 @@
-"""
-Datalane 定时调度：每天 00:00 执行 dongqiudi_schedule。
-
-用法:
-  python scripts/scheduler.py
-"""
-
 import sys
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
-if str(_ROOT) not in sys.path:
-    sys.path.insert(0, str(_ROOT))
+sys.path.insert(0, str(_ROOT))
 
 from core.triggers import start_blocking_scheduler
 

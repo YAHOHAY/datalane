@@ -79,7 +79,7 @@ def test_crawl() -> bool:
 
     today = date.today().isoformat()
     try:
-        run_job("dongqiudi", deliver=False, start=today, end=today)
+        run_job("dongqiudi_schedule", deliver=False, start=today, end=today)
         return True
     except Exception as exc:
         print(f"  [FAIL] {exc}")
@@ -97,7 +97,7 @@ def main() -> None:
         sys.exit(1)
     if args.crawl and not test_crawl():
         sys.exit(1)
-    print("\n通过。赛程: python run_job.py dongqiudi")
+    print("\n通过。赛程: python scripts/run_job.py dongqiudi_schedule")
 
 
 if __name__ == "__main__":

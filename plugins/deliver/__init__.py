@@ -1,1 +1,1 @@
-from plugins.deliver import handlers  # noqa: F401
+from plugins.deliver import telegram, whatsapp  # noqa: F401

@@ -7,8 +7,7 @@ globs:
 
 # Datalane
 
-- Product name: **Datalane**. Pipeline: Ingest → Transform → Deliver.
-- New business: add `jobs/<id>.yaml` + plugin under `plugins/`; do not add new root `main_*.py`.
-- Entry point: `python run_job.py <job_id>`.
-- Deliver only via `plugins/deliver/`.
-- Config: `config/settings.py` and `.env`; never commit `.env`.
+- Pipeline: Ingest → Transform → Deliver (`core/pipeline.py`).
+- Triggers: CLI / cron in `core/triggers.py`; entry `scripts/run_job.py`.
+- New business: `jobs/<id>.yaml` + plugin under `plugins/` only.
+- Do not add business logic under `legacy/` or new root `main_*.py`.

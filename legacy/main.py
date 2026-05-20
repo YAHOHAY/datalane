@@ -1,4 +1,9 @@
-"""入口：python main.py → 网页关键词监控"""
+import sys
+from pathlib import Path
+
+_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(_ROOT))
+
 import plugins  # noqa: F401
 from core.pipeline import run_job
 
