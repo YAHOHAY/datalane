@@ -1,0 +1,17 @@
+id: web_monitor
+name: 网页关键词监控
+description: Playwright 抓取目标页，命中关键词时 Telegram 告警
+async_ingest: true
+
+ingest:
+  plugin: playwright_web
+  params: {}
+
+transform:
+  - plugin: keyword_alert
+    params: {}
+
+deliver:
+  plugin: telegram_alert
+  params:
+    prefix: "🚨 *监控警报*"

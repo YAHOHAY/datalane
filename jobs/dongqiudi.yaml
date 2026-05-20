@@ -1,0 +1,14 @@
+id: dongqiudi
+name: 懂球帝重要赛事
+description: 抓取未来赛程，保存 CSV/TXT 并推送到 Telegram
+
+ingest:
+  plugin: dongqiudi
+  params: {}
+
+transform: []
+
+deliver:
+  plugin: telegram_long_text
+  params:
+    header: "📅 懂球帝重要赛事\n区间: {start} ~ {end}"
