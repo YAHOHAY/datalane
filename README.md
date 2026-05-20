@@ -43,10 +43,18 @@ python scripts/scheduler.py
 ## 目录
 
 ```text
-config/       全局配置
-core/         流水线引擎
-plugins/      可插拔模块
-jobs/         业务 YAML
-scripts/      工具脚本
-data/         输出（不提交 Git）
+run_job.py          ★ 推荐统一入口
+daily_job.py        每日赛程（等同 run_job dongqiudi）
+fetch_matches.py    赛程抓取（可选 --telegram）
+main.py             网页监控
+test_setup.py       配置自检
+config/             全局配置
+core/               流水线引擎
+plugins/            可插拔模块
+jobs/               业务 YAML
+scripts/            定时、自检实现
+data/               输出（仅 .gitkeep 入库，数据文件忽略）
+docs/FILE_MAP.md    旧文件 → 新位置对照
 ```
+
+> 若 GitHub 上「少了很多 .py」：旧逻辑已迁入 `plugins/`，见 [docs/FILE_MAP.md](docs/FILE_MAP.md)。
