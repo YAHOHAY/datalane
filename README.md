@@ -67,4 +67,5 @@ python scripts/scheduler.py
 
 ## 文档
 
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — **架构说明、使用指南、扩展 100 任务**
 - [docs/FILE_MAP.md](docs/FILE_MAP.md) — 文件对照
